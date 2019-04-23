@@ -58,6 +58,8 @@ Java_com_zzw_nativeopnegldemo_opengl_NationOpenGL_nativeSurfaceDestroyed(JNIEnv 
                                                                          jobject instance) {
     if (eglThread) {
         eglThread->isExit = true;
+        //等待线程结束
+        pthread_join(eglThread, NULL);
         delete (eglThread);
         eglThread = NULL;
     }
